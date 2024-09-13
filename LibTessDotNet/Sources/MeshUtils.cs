@@ -116,6 +116,7 @@ namespace LibTessDotNet
 
         public abstract class Pooled<T> where T : Pooled<T>, new()
         {
+            [ThreadStatic]
             private static Stack<T> _stack;
 
             public abstract void Reset();
