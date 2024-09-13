@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("N/A")]
 [assembly: AssemblyProduct("LibTessDotNet")]
-[assembly: AssemblyCopyright("LICENSE.txt")]
+[assembly: AssemblyCopyright("http://oss.sgi.com/projects/FreeB/")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

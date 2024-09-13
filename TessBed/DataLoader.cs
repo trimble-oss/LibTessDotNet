@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using LibTessDotNet;
-using System.Diagnostics;
 
 namespace TessBed
 {
-    [DebuggerDisplay("{X}, {Y}, {Z}")]
     public struct PolygonPoint
     {
-        public float X, Y, Z;
+        public float X, Y;
         public Color Color;
     }
 
@@ -46,7 +43,7 @@ namespace TessBed
             public PolygonSet Polygons;
         }
 
-        public static PolygonSet LoadDat(Stream resourceStream)
+        public PolygonSet LoadDat(Stream fileStream)
         {
             var points = new List<PolygonPoint>();
             var polys = new PolygonSet();
@@ -54,7 +51,7 @@ namespace TessBed
             string line;
             Color currentColor = Color.White;
             ContourOrientation currentOrientation = ContourOrientation.Original;
-            using (var stream = new StreamReader(resourceStream))
+            using (var stream = new StreamReader(fileStream))
             {
                 while ((line = stream.ReadLine()) != null)
                 {
@@ -119,14 +116,14 @@ namespace TessBed
                     }
                     else
                     {
-                        float x = 0, y = 0, z = 0;
-                        var xyz = line.Split(new[] { ' ', ',', '\t' }, StringSplitOptions.RemoveEmptyEntries);
-                        if (xyz != null)
+                        float x, y;
+                        var xy = line.Split(new[] { ' ', ',', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                        if (xy != null &&
+                            xy.Length >= 2 &&
+                            float.TryParse(xy[0], NumberStyles.Float, CultureInfo.InvariantCulture, out x) &&
+                            float.TryParse(xy[1], NumberStyles.Float, CultureInfo.InvariantCulture, out y))
                         {
-                            if (xyz.Length >= 1) float.TryParse(xyz[0], NumberStyles.Float, CultureInfo.InvariantCulture, out x);
-                            if (xyz.Length >= 2) float.TryParse(xyz[1], NumberStyles.Float, CultureInfo.InvariantCulture, out y);
-                            if (xyz.Length >= 3) float.TryParse(xyz[2], NumberStyles.Float, CultureInfo.InvariantCulture, out z);
-                            points.Add(new PolygonPoint { X = x, Y = y, Z = z, Color = currentColor });
+                            points.Add(new PolygonPoint { X = x, Y = y, Color = currentColor });
                         }
                         else
                         {
@@ -162,10 +159,13 @@ namespace TessBed
         {
             foreach (var name in Assembly.GetExecutingAssembly().GetManifestResourceNames())
             {
-                var ext = Path.GetExtension(name);
-                if (ext == ".dat")
+                var s = name.Split('.');
+                if (s != null && s.Length > 0)
                 {
-                    _assets.Add(name.Split('.').Reverse().Skip(1).FirstOrDefault(), new Asset { Name = name });
+                    if (s[s.Length - 1] == "dat")
+                    {
+                        _assets.Add(s[s.Length - 2], new Asset { Name = name });
+                    }
                 }
             }
         }
