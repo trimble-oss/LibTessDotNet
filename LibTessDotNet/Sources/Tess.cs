@@ -78,6 +78,8 @@ namespace LibTessDotNet
 
     public delegate object CombineCallback(Vec3 position, object[] data, Real[] weights);
 
+    public delegate object CombineCallbackExt(Vec3 position, object[] data, Real[] weights, object userContext);
+
     public partial class Tess
     {
         private Mesh _mesh;
@@ -94,6 +96,8 @@ namespace LibTessDotNet
         private MeshUtils.Vertex _event;
 
         private CombineCallback _combineCallback;
+        private CombineCallbackExt _combineCallbackExt;
+        private object _combineCallbackExtUserContext;
 
         private ContourVertex[] _vertices;
         private int _vertexCount;
@@ -315,8 +319,8 @@ namespace LibTessDotNet
             var up = face._anEdge;
             Debug.Assert(up._Lnext != up && up._Lnext._Lnext != up);
 
-            for (; Geom.VertLeq(up._Dst, up._Org); up = up._Lprev);
-            for (; Geom.VertLeq(up._Org, up._Dst); up = up._Lnext);
+            while (Geom.VertLeq(up._Dst, up._Org)) up = up._Lprev;
+            while (Geom.VertLeq(up._Org, up._Dst)) up = up._Lnext;
 
             var lo = up._Lprev;
 
@@ -745,6 +749,13 @@ namespace LibTessDotNet
                 _mesh.Free();
             }
             _mesh = null;
+        }
+
+        public void TessellateExt(WindingRule windingRule, ElementType elementType, int polySize, CombineCallbackExt combineCallback, object combineCallbackUserContext)
+        {
+            _combineCallbackExt = combineCallback;
+            _combineCallbackExtUserContext = combineCallbackUserContext;
+            Tessellate(windingRule, elementType, polySize, null);
         }
     }
 }
