@@ -152,7 +152,7 @@ namespace LibTessDotNet
             internal Real _s, _t;
             internal PQHandle _pqHandle;
             internal int _n;
-            internal object _data;
+            internal int _data;
 
             public override void Reset()
             {
@@ -163,7 +163,7 @@ namespace LibTessDotNet
                 _t = 0;
                 _pqHandle = new PQHandle();
                 _n = 0;
-                _data = null;
+                _data = 0;
             }
         }
 

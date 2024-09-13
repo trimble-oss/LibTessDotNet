@@ -68,7 +68,7 @@ namespace LibTessDotNet
     public struct ContourVertex
     {
         public Vec3 Position;
-        public object Data;
+        public int Data;
 
         public override string ToString()
         {
@@ -76,9 +76,9 @@ namespace LibTessDotNet
         }
     }
 
-    public delegate object CombineCallback(Vec3 position, object[] data, Real[] weights);
+    public delegate int CombineCallback(Vec3 position, int[] data, Real[] weights);
 
-    public delegate object CombineCallbackExt(Vec3 position, object[] data, Real[] weights, object userContext);
+    public delegate int CombineCallbackExt(Vec3 position, int[] data, Real[] weights, object userContext);
 
     public partial class Tess
     {

@@ -374,7 +374,7 @@ namespace LibTessDotNet
             {
                 isect._data = _combineCallback(
                     isect._coords,
-                    new object[] { orgUp._data, dstUp._data, orgLo._data, dstLo._data },
+                    new int[] { orgUp._data, dstUp._data, orgLo._data, dstLo._data },
                     new Real[] { w0, w1, w2, w3 }
                 );
             }
@@ -382,7 +382,7 @@ namespace LibTessDotNet
             {
                 isect._data = _combineCallbackExt(
                     isect._coords,
-                    new object[] { orgUp._data, dstUp._data, orgLo._data, dstLo._data },
+                    new int[] { orgUp._data, dstUp._data, orgLo._data, dstLo._data },
                     new Real[] { w0, w1, w2, w3 },
                     _combineCallbackExtUserContext
                 );
