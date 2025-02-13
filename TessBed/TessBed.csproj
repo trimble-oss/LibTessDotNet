@@ -41,7 +41,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Poly2Tri">
-      <HintPath>..\ExternalDependencies\Poly2Tri.dll</HintPath>
+      <HintPath>Externals\Poly2Tri\Poly2Tri.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

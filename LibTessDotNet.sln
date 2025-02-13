@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibTessDotNet", "LibTessDotNet\LibTessDotNet.csproj", "{5EE39029-873A-45A0-9259-2198BF8729F4}"
 EndProject
@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{1E6E1C79-6
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibTessDotNet.Standard", "LibTessDotNet.Standard\LibTessDotNet.Standard.csproj", "{04C9E3D2-BFAE-4412-B456-D10D0EECAEA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,20 +29,12 @@ Global
 		{AA3C13F4-2628-43D5-BAAE-751AE013C865}.Debug|Any CPU.Build.0 = Debug|x86
 		{AA3C13F4-2628-43D5-BAAE-751AE013C865}.Release|Any CPU.ActiveCfg = Release|x86
 		{AA3C13F4-2628-43D5-BAAE-751AE013C865}.Release|Any CPU.Build.0 = Release|x86
+		{04C9E3D2-BFAE-4412-B456-D10D0EECAEA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04C9E3D2-BFAE-4412-B456-D10D0EECAEA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04C9E3D2-BFAE-4412-B456-D10D0EECAEA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04C9E3D2-BFAE-4412-B456-D10D0EECAEA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://a-tfstech/tfs/technology2010
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = LibTessDotNet\\LibTessDotNet.csproj
-		SccProjectName1 = LibTessDotNet
-		SccLocalPath1 = LibTessDotNet
-		SccProjectUniqueName2 = TessBed\\TessBed.csproj
-		SccProjectName2 = TessBed
-		SccLocalPath2 = TessBed
 	EndGlobalSection
 EndGlobal
